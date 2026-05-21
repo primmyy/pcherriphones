@@ -583,8 +583,6 @@ function render() {
   document.getElementById("mainContent").innerHTML = html;
 }
 
-loadAll();
-
 // ===== PAGE SWITCHING =====
 function switchPage(id, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -665,6 +663,9 @@ async function loadDevices() {
     document.getElementById('devicesList').innerHTML = '<div class="no-result"><div class="no-result-text">โหลดข้อมูลไม่ได้</div></div>';
   }
 }
+
+// เรียก loadAll หลังฟังก์ชันทั้งหมด define แล้ว
+loadAll();
 </script>
 </body>
 </html>
