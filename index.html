@@ -317,6 +317,22 @@
 </div>
 
 <script>
+// PAGE SWITCHING — ต้องอยู่ต้น script เพื่อให้ onclick ใน HTML เรียกได้
+function switchPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+function filterDate(date, el) {
+  document.querySelectorAll('#dateFilter .date-chip').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
+  activeDateFilter = date;
+  render();
+}
+
 // ============================================================
 // CONFIG — แก้ตรงนี้เท่านั้น
 // ============================================================
@@ -609,7 +625,7 @@ function buildDateFilter() {
       .filter(e => activeMonth === 'all' || e.month === activeMonth)
       .map(e => e.dateStr)
   )].sort();
-  wrap.innerHTML = '<button class="date-chip active" data-date="all" onclick="filterDate('all',this)">ทั้งหมด</button>' +
+  wrap.innerHTML = '<button class="date-chip active" data-date="all" onclick="filterDate(\'all\',this)">ทั้งหมด</button>' +
     dates.map(d => {
       const [day, mon] = d.split('/');
       const mth = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'][parseInt(mon)];
